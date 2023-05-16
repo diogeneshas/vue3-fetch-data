@@ -9,5 +9,5 @@ import axios from "axios"
 
 const response =  await axios.get("https://thronesapi.com/api/v2/Characters")
 
-console.log(response);
+
 </script>
