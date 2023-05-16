@@ -4,7 +4,16 @@ import BreakingBadCards from "./components/BreakingBadCards.vue"
 
 <template>
   <h1>Hero</h1>
-  <BreakingBadCards />
+  <Suspense>
+    <template #default>
+      <BreakingBadCards />
+    </template>
+    <template #fallback>
+      <div>
+        <p>Loading...</p>
+      </div>
+    </template>
+  </Suspense>
 </template>
 
 <style scoped>
