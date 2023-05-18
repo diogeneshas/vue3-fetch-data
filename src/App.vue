@@ -12,8 +12,9 @@ const isBreakingBad = ref(true)
 
 <template>
   <Hero :isBreakingBad="isBreakingBad" @selectShow="isBreakingBad = !isBreakingBad"/>
-  <BreakingBadCardsSuspense v-if="isBreakingBad"/>
-  <RickMortyCards v-else/>
+  <KeepAlive>
+    <Component :is="isBreakingBad ? BreakingBadCardsSuspense : RickMortyCards" />
+  </KeepAlive>
 </template>
 
 
