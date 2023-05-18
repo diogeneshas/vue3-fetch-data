@@ -10,8 +10,8 @@ import RickMortyCards from "./components/RickMortyCards.vue"
       <BreakingBadCards />
     </template>
     <template #fallback>
-      <div>
-        <p>Loading...</p>
+      <div class="cards spinner">
+        <n-spin size="large"></n-spin>
       </div>
     </template>
   </Suspense>
@@ -20,4 +20,11 @@ import RickMortyCards from "./components/RickMortyCards.vue"
 
 
 <style scoped>
+.cards {
+  height: 700px;
+  background-color: rgb(27, 26, 26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>

@@ -1,9 +1,12 @@
 <template>
   <div class="container">
-    <div class="cards">
+    <div class="cards" v-if="characters">
       <Card v-for="character in characters" :key="character.id" :image="character.image" :name="character.name">
         <p>{{ character.location.name }}</p>
       </Card>
+    </div>
+    <div class="cards spinner" v-else>
+      <n-spin size="large"></n-spin>
     </div>
     <div class="button-container">
       <button @click="page--">&lt</button>
@@ -27,7 +30,7 @@ onMounted( async () => {
 
 watch(page, async () => {
   const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page.value}`)
-  characters.value = res.data
+  characters.value = res.data.results
 })
 </script>
 
