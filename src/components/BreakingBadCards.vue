@@ -3,6 +3,10 @@
     <div class="cards">
       <Card v-for="character in characters" :key="character.id" :image="character.image" :name="character.name" :occupation="character.occupation"/>
     </div>
+    <div class="button-container">
+      <button @click="page--">&lt</button>
+      <button @click="page ++">></button>
+    </div>
   </div>
 </template>
 
