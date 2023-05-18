@@ -1,21 +1,19 @@
 <script setup>
-import BreakingBadCards from "./components/BreakingBadCards.vue"
 import RickMortyCards from "./components/RickMortyCards.vue"
+import Hero from "./components/Hero.vue"
+import BreakingBadCardsSuspense from "./components/BreakingBadCardsSuspense.vue";
+
+import { ref } from "vue"
+
+const isBreakingBad = ref(true)
+
+
 </script>
 
 <template>
-  <h1>Hero</h1>
-  <Suspense>
-    <template #default>
-      <BreakingBadCards />
-    </template>
-    <template #fallback>
-      <div class="cards spinner">
-        <n-spin size="large"></n-spin>
-      </div>
-    </template>
-  </Suspense>
-  <RickMortyCards />
+  <Hero :isBreakingBad="isBreakingBad" @selectShow="isBreakingBad = !isBreakingBad"/>
+  <BreakingBadCardsSuspense v-if="isBreakingBad"/>
+  <RickMortyCards v-else/>
 </template>
 
 
