@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="cards">
-      <Card v-for="character in characters" :key="character.id" :image="character.image" :name="character.name" :occupation="character.occupation">
-        <h4>{{ character.occupation }}</h4>
+      <Card v-for="character in characters" :key="character.id" :image="character.image" :name="character.name">
+        <p>{{ character.location.name }}</p>
       </Card>
     </div>
     <div class="button-container">
@@ -14,21 +14,21 @@
 
 <script setup>
 import Card from "@/components/Card.vue"
-import { ref, watch } from "vue"
+import { ref, watch, onMounted } from "vue"
 import axios from "axios"
 
 const characters = ref(null)
-const page = ref(0)
+const page = ref(1)
 
-const response =  await axios.get("https://bobsburgers-api.herokuapp.com/characters?limit=8")
-characters.value = response.data
+onMounted( async () => {
+  const response = await axios.get("https://rickandmortyapi.com/api/character")
+  characters.value = response.data.results
+})
 
 watch(page, async () => {
-  const res =  await axios.get(`https://bobsburgers-api.herokuapp.com/characters/?limit=8&skip=${page.value * 8}`)
+  const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page.value}`)
   characters.value = res.data
-},
-  { immediate: true }
-)
+})
 </script>
 
 <style scoped>
@@ -37,14 +37,14 @@ watch(page, async () => {
 
 .container {
   background-color: rgb(27, 26, 26);
-  padding: 30px
+  padding: 30px;
+  margin-top: 100px;
 }
 .cards {
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  height: 900px
 }
 .cards h3 {
   font-weight: bold;

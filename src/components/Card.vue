@@ -3,7 +3,7 @@
     <template #cover>
       <img :src="image" alt="">
     </template>
-    <h4>{{ occupation }}</h4>
+    <slot></slot>
   </n-card>
 </template>
 

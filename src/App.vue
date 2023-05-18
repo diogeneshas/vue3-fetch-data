@@ -1,5 +1,6 @@
 <script setup>
 import BreakingBadCards from "./components/BreakingBadCards.vue"
+import RickMortyCards from "./components/RickMortyCards.vue"
 </script>
 
 <template>
@@ -14,7 +15,9 @@ import BreakingBadCards from "./components/BreakingBadCards.vue"
       </div>
     </template>
   </Suspense>
+  <RickMortyCards />
 </template>
+
 
 <style scoped>
 </style>
